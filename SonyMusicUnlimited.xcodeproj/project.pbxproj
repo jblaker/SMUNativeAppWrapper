@@ -1,0 +1,319 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3F033DB117C428BC009BE0C7 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F033DB017C428BC009BE0C7 /* AppIcon.png */; };
+		3F22759C17C409D50051A177 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F22759B17C409D50051A177 /* Cocoa.framework */; };
+		3F2275A617C409D50051A177 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F2275A417C409D50051A177 /* InfoPlist.strings */; };
+		3F2275A817C409D50051A177 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2275A717C409D50051A177 /* main.m */; };
+		3F2275AC17C409D50051A177 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3F2275AA17C409D50051A177 /* Credits.rtf */; };
+		3F2275AF17C409D50051A177 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2275AE17C409D50051A177 /* AppDelegate.m */; };
+		3F2275B217C409D50051A177 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2275B017C409D50051A177 /* MainMenu.xib */; };
+		3F2275B917C40A830051A177 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F2275B817C40A830051A177 /* WebKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3F033DB017C428BC009BE0C7 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = SOURCE_ROOT; };
+		3F22759817C409D50051A177 /* SonyMusicUnlimited.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonyMusicUnlimited.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F22759B17C409D50051A177 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		3F22759E17C409D50051A177 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		3F22759F17C409D50051A177 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3F2275A017C409D50051A177 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3F2275A317C409D50051A177 /* SonyMusicUnlimited-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SonyMusicUnlimited-Info.plist"; sourceTree = "<group>"; };
+		3F2275A517C409D50051A177 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3F2275A717C409D50051A177 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3F2275A917C409D50051A177 /* SonyMusicUnlimited-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SonyMusicUnlimited-Prefix.pch"; sourceTree = "<group>"; };
+		3F2275AB17C409D50051A177 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		3F2275AD17C409D50051A177 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3F2275AE17C409D50051A177 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3F2275B117C409D50051A177 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3F2275B817C40A830051A177 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F22759517C409D50051A177 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F2275B917C40A830051A177 /* WebKit.framework in Frameworks */,
+				3F22759C17C409D50051A177 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3F22758F17C409D50051A177 = {
+			isa = PBXGroup;
+			children = (
+				3F2275A117C409D50051A177 /* SonyMusicUnlimited */,
+				3F22759A17C409D50051A177 /* Frameworks */,
+				3F22759917C409D50051A177 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3F22759917C409D50051A177 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F22759817C409D50051A177 /* SonyMusicUnlimited.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F22759A17C409D50051A177 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F2275B817C40A830051A177 /* WebKit.framework */,
+				3F22759B17C409D50051A177 /* Cocoa.framework */,
+				3F22759D17C409D50051A177 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3F22759D17C409D50051A177 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F22759E17C409D50051A177 /* AppKit.framework */,
+				3F22759F17C409D50051A177 /* CoreData.framework */,
+				3F2275A017C409D50051A177 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		3F2275A117C409D50051A177 /* SonyMusicUnlimited */ = {
+			isa = PBXGroup;
+			children = (
+				3F033DB017C428BC009BE0C7 /* AppIcon.png */,
+				3F2275AD17C409D50051A177 /* AppDelegate.h */,
+				3F2275AE17C409D50051A177 /* AppDelegate.m */,
+				3F2275B017C409D50051A177 /* MainMenu.xib */,
+				3F2275A217C409D50051A177 /* Supporting Files */,
+			);
+			path = SonyMusicUnlimited;
+			sourceTree = "<group>";
+		};
+		3F2275A217C409D50051A177 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3F2275A317C409D50051A177 /* SonyMusicUnlimited-Info.plist */,
+				3F2275A417C409D50051A177 /* InfoPlist.strings */,
+				3F2275A717C409D50051A177 /* main.m */,
+				3F2275A917C409D50051A177 /* SonyMusicUnlimited-Prefix.pch */,
+				3F2275AA17C409D50051A177 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3F22759717C409D50051A177 /* SonyMusicUnlimited */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F2275B517C409D50051A177 /* Build configuration list for PBXNativeTarget "SonyMusicUnlimited" */;
+			buildPhases = (
+				3F22759417C409D50051A177 /* Sources */,
+				3F22759517C409D50051A177 /* Frameworks */,
+				3F22759617C409D50051A177 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SonyMusicUnlimited;
+			productName = SonyMusicUnlimited;
+			productReference = 3F22759817C409D50051A177 /* SonyMusicUnlimited.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F22759017C409D50051A177 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = blakerdesign;
+			};
+			buildConfigurationList = 3F22759317C409D50051A177 /* Build configuration list for PBXProject "SonyMusicUnlimited" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3F22758F17C409D50051A177;
+			productRefGroup = 3F22759917C409D50051A177 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3F22759717C409D50051A177 /* SonyMusicUnlimited */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3F22759617C409D50051A177 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F2275A617C409D50051A177 /* InfoPlist.strings in Resources */,
+				3F2275AC17C409D50051A177 /* Credits.rtf in Resources */,
+				3F2275B217C409D50051A177 /* MainMenu.xib in Resources */,
+				3F033DB117C428BC009BE0C7 /* AppIcon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F22759417C409D50051A177 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F2275A817C409D50051A177 /* main.m in Sources */,
+				3F2275AF17C409D50051A177 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3F2275A417C409D50051A177 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F2275A517C409D50051A177 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3F2275AA17C409D50051A177 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F2275AB17C409D50051A177 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		3F2275B017C409D50051A177 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F2275B117C409D50051A177 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3F2275B317C409D50051A177 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3F2275B417C409D50051A177 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3F2275B617C409D50051A177 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SonyMusicUnlimited/SonyMusicUnlimited-Prefix.pch";
+				INFOPLIST_FILE = "SonyMusicUnlimited/SonyMusicUnlimited-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3F2275B717C409D50051A177 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SonyMusicUnlimited/SonyMusicUnlimited-Prefix.pch";
+				INFOPLIST_FILE = "SonyMusicUnlimited/SonyMusicUnlimited-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F22759317C409D50051A177 /* Build configuration list for PBXProject "SonyMusicUnlimited" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F2275B317C409D50051A177 /* Debug */,
+				3F2275B417C409D50051A177 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F2275B517C409D50051A177 /* Build configuration list for PBXNativeTarget "SonyMusicUnlimited" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F2275B617C409D50051A177 /* Debug */,
+				3F2275B717C409D50051A177 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3F22759017C409D50051A177 /* Project object */;
+}
