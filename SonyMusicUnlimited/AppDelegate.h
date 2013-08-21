@@ -20,4 +20,6 @@
 - (IBAction)likeTrack:(id)sender;
 - (IBAction)dislikeTrack:(id)sender;
 
+@property (weak) IBOutlet NSMenuItem *nowPlaying;
+
 @end
