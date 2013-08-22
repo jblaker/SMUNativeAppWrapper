@@ -13,13 +13,9 @@
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet WebView *webView;
+@property (weak) IBOutlet NSImageView *smuLogo;
+@property (weak) IBOutlet NSMenuItem *nowPlayingMenuItem;
 
-- (IBAction)togglePlayback:(id)sender;
-- (IBAction)previousTrack:(id)sender;
-- (IBAction)nextTrack:(id)sender;
-- (IBAction)likeTrack:(id)sender;
-- (IBAction)dislikeTrack:(id)sender;
-
-@property (weak) IBOutlet NSMenuItem *nowPlaying;
++ (AppDelegate *)appDelegate;
 
 @end

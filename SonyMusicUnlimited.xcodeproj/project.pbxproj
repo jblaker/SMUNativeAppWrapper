@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F033DB117C428BC009BE0C7 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F033DB017C428BC009BE0C7 /* AppIcon.png */; };
+		3F1E4B6617C682590085A55B /* SMUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1E4B6517C682590085A55B /* SMUManager.m */; };
+		3F1E4B6817C6926B0085A55B /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3F1E4B6717C6926B0085A55B /* AppIcon.icns */; };
 		3F22759C17C409D50051A177 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F22759B17C409D50051A177 /* Cocoa.framework */; };
 		3F2275A617C409D50051A177 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F2275A417C409D50051A177 /* InfoPlist.strings */; };
 		3F2275A817C409D50051A177 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2275A717C409D50051A177 /* main.m */; };
@@ -18,7 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F033DB017C428BC009BE0C7 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = SOURCE_ROOT; };
+		3F1E4B6417C682590085A55B /* SMUManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUManager.h; sourceTree = "<group>"; };
+		3F1E4B6517C682590085A55B /* SMUManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUManager.m; sourceTree = "<group>"; };
+		3F1E4B6717C6926B0085A55B /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = SOURCE_ROOT; };
 		3F22759817C409D50051A177 /* SonyMusicUnlimited.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonyMusicUnlimited.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F22759B17C409D50051A177 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		3F22759E17C409D50051A177 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -88,11 +91,13 @@
 		3F2275A117C409D50051A177 /* SonyMusicUnlimited */ = {
 			isa = PBXGroup;
 			children = (
-				3F033DB017C428BC009BE0C7 /* AppIcon.png */,
+				3F1E4B6717C6926B0085A55B /* AppIcon.icns */,
 				3F2275AD17C409D50051A177 /* AppDelegate.h */,
 				3F2275AE17C409D50051A177 /* AppDelegate.m */,
 				3F2275B017C409D50051A177 /* MainMenu.xib */,
 				3F2275A217C409D50051A177 /* Supporting Files */,
+				3F1E4B6417C682590085A55B /* SMUManager.h */,
+				3F1E4B6517C682590085A55B /* SMUManager.m */,
 			);
 			path = SonyMusicUnlimited;
 			sourceTree = "<group>";
@@ -163,7 +168,7 @@
 				3F2275A617C409D50051A177 /* InfoPlist.strings in Resources */,
 				3F2275AC17C409D50051A177 /* Credits.rtf in Resources */,
 				3F2275B217C409D50051A177 /* MainMenu.xib in Resources */,
-				3F033DB117C428BC009BE0C7 /* AppIcon.png in Resources */,
+				3F1E4B6817C6926B0085A55B /* AppIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +181,7 @@
 			files = (
 				3F2275A817C409D50051A177 /* main.m in Sources */,
 				3F2275AF17C409D50051A177 /* AppDelegate.m in Sources */,
+				3F1E4B6617C682590085A55B /* SMUManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
