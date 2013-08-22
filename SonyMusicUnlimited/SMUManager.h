@@ -12,10 +12,10 @@
 
 + (SMUManager *)sharedInstance;
 - (void)setup;
-- (IBAction)togglePlayback:(id)sender;
-- (IBAction)previousTrack:(id)sender;
-- (IBAction)nextTrack:(id)sender;
-- (IBAction)likeTrack:(id)sender;
-- (IBAction)dislikeTrack:(id)sender;
+- (void)togglePlayback;
+- (void)previousTrack;
+- (void)nextTrack;
+- (void)likeTrack;
+- (void)dislikeTrack;
 
 @end

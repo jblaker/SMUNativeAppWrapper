@@ -38,23 +38,23 @@
   [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(displayNowPlaying) userInfo:nil repeats:YES];
 }
 
-- (void)togglePlayback:(id)sender {
+- (void)togglePlayback {
   [self triggerJavascriptEvent:@"click" forElementID:@"PlayerPlayPause"];
 }
 
-- (void)previousTrack:(id)sender {
+- (void)previousTrack {
   [self triggerJavascriptEvent:@"click" forElementID:@"PlayerPrevious"];
 }
 
-- (void)nextTrack:(id)sender {
+- (void)nextTrack {
   [self triggerJavascriptEvent:@"click" forElementID:@"PlayerNext"];
 }
 
-- (void)likeTrack:(id)sender {
+- (void)likeTrack {
   [self triggerJavascriptEvent:@"click" forElementID:@"PlayerLike"];
 }
 
-- (void)dislikeTrack:(id)sender {
+- (void)dislikeTrack {
   [self triggerJavascriptEvent:@"click" forElementID:@"PlayerDislike"];
 }
 

@@ -117,9 +117,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F22759717C409D50051A177 /* SonyMusicUnlimited */ = {
+		3F22759717C409D50051A177 /* Sony Music Unlimited */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F2275B517C409D50051A177 /* Build configuration list for PBXNativeTarget "SonyMusicUnlimited" */;
+			buildConfigurationList = 3F2275B517C409D50051A177 /* Build configuration list for PBXNativeTarget "Sony Music Unlimited" */;
 			buildPhases = (
 				3F22759417C409D50051A177 /* Sources */,
 				3F22759517C409D50051A177 /* Frameworks */,
@@ -129,7 +129,7 @@
 			);
 			dependencies = (
 			);
-			name = SonyMusicUnlimited;
+			name = "Sony Music Unlimited";
 			productName = SonyMusicUnlimited;
 			productReference = 3F22759817C409D50051A177 /* SonyMusicUnlimited.app */;
 			productType = "com.apple.product-type.application";
@@ -155,7 +155,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3F22759717C409D50051A177 /* SonyMusicUnlimited */,
+				3F22759717C409D50051A177 /* Sony Music Unlimited */,
 			);
 		};
 /* End PBXProject section */
@@ -310,7 +310,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F2275B517C409D50051A177 /* Build configuration list for PBXNativeTarget "SonyMusicUnlimited" */ = {
+		3F2275B517C409D50051A177 /* Build configuration list for PBXNativeTarget "Sony Music Unlimited" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F2275B617C409D50051A177 /* Debug */,

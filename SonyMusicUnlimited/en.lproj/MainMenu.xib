@@ -170,7 +170,7 @@
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<string key="NSWindowContentMinSize">{1000, 1000}</string>
 				<object class="NSView" key="NSWindowView" id="439893737">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="WebView" id="606458746">
@@ -249,6 +249,7 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{1000, 1000}</string>
+					<reference key="NSSuperview"/>
 					<reference key="NSNextKeyView" ref="606458746"/>
 					<bool key="NSViewIsLayerTreeHost">YES</bool>
 				</object>
@@ -326,52 +327,52 @@
 					<int key="connectionID">689</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">dislikeTrack:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="369740401"/>
+					</object>
+					<int key="connectionID">690</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">likeTrack:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="495055981"/>
+					</object>
+					<int key="connectionID">691</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">previousTrack:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="436583115"/>
+					</object>
+					<int key="connectionID">692</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">nextTrack:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="809882293"/>
+					</object>
+					<int key="connectionID">693</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">togglePlayback:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="915121851"/>
+					</object>
+					<int key="connectionID">694</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">frameLoadDelegate</string>
 						<reference key="source" ref="606458746"/>
 						<reference key="destination" ref="976324537"/>
 					</object>
 					<int key="connectionID">661</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">previousTrack:</string>
-						<reference key="source" ref="188368924"/>
-						<reference key="destination" ref="436583115"/>
-					</object>
-					<int key="connectionID">624</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">togglePlayback:</string>
-						<reference key="source" ref="188368924"/>
-						<reference key="destination" ref="915121851"/>
-					</object>
-					<int key="connectionID">625</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">nextTrack:</string>
-						<reference key="source" ref="188368924"/>
-						<reference key="destination" ref="809882293"/>
-					</object>
-					<int key="connectionID">626</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">likeTrack:</string>
-						<reference key="source" ref="188368924"/>
-						<reference key="destination" ref="495055981"/>
-					</object>
-					<int key="connectionID">627</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">dislikeTrack:</string>
-						<reference key="source" ref="188368924"/>
-						<reference key="destination" ref="369740401"/>
-					</object>
-					<int key="connectionID">628</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -771,7 +772,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">689</int>
+			<int key="maxID">694</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
