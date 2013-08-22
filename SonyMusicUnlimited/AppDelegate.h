@@ -13,7 +13,7 @@
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet WebView *webView;
-@property (weak) IBOutlet NSImageView *smuLogo;
+@property (weak) IBOutlet NSImageView *splashImage;
 @property (weak) IBOutlet NSMenuItem *nowPlayingMenuItem;
 
 - (IBAction)togglePlayback:(id)sender;
