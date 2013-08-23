@@ -16,6 +16,10 @@
 @interface SMUManager () {
   WebView *_webView;
   NSMenuItem *_nowPlayingMenuItem;
+  NSMenuItem *_artistNameMenuItem;
+  NSMenuItem *_trackNameMenuItem;
+  NSMenu *_dockMenu;
+  BOOL _isPlaying;
 }
 
 @end
@@ -32,8 +36,17 @@
 }
 
 - (void)setup {
+  
   _nowPlayingMenuItem = [[AppDelegate appDelegate] nowPlayingMenuItem];
+  [_nowPlayingMenuItem setTitle:@"Nothing Playing"];
+  
   _webView = [[AppDelegate appDelegate] webView];
+  _dockMenu = [[AppDelegate appDelegate] dockMenu];
+  _trackNameMenuItem = [[AppDelegate appDelegate] trackNameMenuItem];
+  _artistNameMenuItem = [[AppDelegate appDelegate] artistNameMenuItem];
+  
+  [self shouldShowTrackInfoMenuItems:NO];
+  
   [_webView setMainFrameURL:kURLToLoad];
   [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(displayNowPlaying) userInfo:nil repeats:YES];
 }
@@ -63,19 +76,35 @@
   [_webView stringByEvaluatingJavaScriptFromString:javascriptCommand];
 }
 
+- (void)shouldShowTrackInfoMenuItems:(BOOL)b {
+  if (b) {
+    [_dockMenu insertItem:_trackNameMenuItem atIndex:1];
+    [_dockMenu insertItem:_artistNameMenuItem atIndex:1];
+  } else {
+    [_dockMenu removeItem:_trackNameMenuItem];
+    [_dockMenu removeItem:_artistNameMenuItem];
+  }
+}
+
 - (void)displayNowPlaying {
   NSString *title = [self innerHTMLForElementWithClassName:kNowPlayingClass atIndex:0];
-  NSString *album = [self innerHTMLForElementWithClassName:kNowPlayingClass atIndex:2];
+  //NSString *album = [self innerHTMLForElementWithClassName:kNowPlayingClass atIndex:2];
   NSString *artist = [self innerHTMLForElementWithClassName:kNowPlayingClass atIndex:4];
-  NSString *nowPlaying;
   if ( title.length == 0 ) {
-    nowPlaying = @"Nothing Playing";
-    [[[NSApplication sharedApplication] mainWindow] setTitle:kApplicationName];
+    [_nowPlayingMenuItem setTitle:@"Nothing Playing"];
+    if ( _isPlaying == YES ) {
+      [self shouldShowTrackInfoMenuItems:NO];
+      _isPlaying = NO;
+    }
   } else {
-    nowPlaying = [NSString stringWithFormat:@"%@ - %@ - %@", title, album, artist];
-    [[[NSApplication sharedApplication] mainWindow] setTitle:[NSString stringWithFormat:@"%@ | %@", kApplicationName, nowPlaying]];
+    [_nowPlayingMenuItem setTitle:@"Now Playing"];
+    [_artistNameMenuItem setTitle:artist];
+    [_trackNameMenuItem setTitle:title];
+    if ( _isPlaying == NO ) {
+      [self shouldShowTrackInfoMenuItems:YES];
+      _isPlaying = YES;
+    }
   }
-  [_nowPlayingMenuItem setTitle:nowPlaying];
 }
 
 - (NSString *)innerHTMLForElementWithClassName:(NSString *)className atIndex:(int)index {

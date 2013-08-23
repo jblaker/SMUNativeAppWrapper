@@ -18,26 +18,12 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-  [[SMUManager sharedInstance] setup];
   [self.window setBackgroundColor:[NSColor colorWithDeviceRed:0.917 green:0.921 blue:0.933 alpha:1.0]];
-}
-
-- (void)applicationDidBecomeActive:(NSNotification *)notification {
-  NSLog(@"Back");
+  [[SMUManager sharedInstance] setup];
 }
 
 + (AppDelegate *)appDelegate {
 	return (AppDelegate *)[[NSApplication sharedApplication] delegate];
-}
-
-#pragma mark - WebView Frame Delegate
-
-- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
-  if ( didInitialLoad == NO ) {
-    [self.webView setHidden:NO];
-    [self.splashImage removeFromSuperview];
-    didInitialLoad = YES;
-  }
 }
 
 #pragma mark - UI Actions

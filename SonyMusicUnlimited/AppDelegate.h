@@ -12,9 +12,11 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSMenu *dockMenu;
 @property (weak) IBOutlet WebView *webView;
-@property (weak) IBOutlet NSImageView *splashImage;
 @property (weak) IBOutlet NSMenuItem *nowPlayingMenuItem;
+@property (weak) IBOutlet NSMenuItem *trackNameMenuItem;
+@property (weak) IBOutlet NSMenuItem *artistNameMenuItem;
 
 - (IBAction)togglePlayback:(id)sender;
 - (IBAction)previousTrack:(id)sender;
