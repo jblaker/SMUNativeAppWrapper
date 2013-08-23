@@ -17,6 +17,7 @@
 @property (weak) IBOutlet NSMenuItem *nowPlayingMenuItem;
 @property (weak) IBOutlet NSMenuItem *trackNameMenuItem;
 @property (weak) IBOutlet NSMenuItem *artistNameMenuItem;
+@property (weak) IBOutlet NSMenuItem *playbackToggleMenuItem;
 
 - (IBAction)togglePlayback:(id)sender;
 - (IBAction)previousTrack:(id)sender;

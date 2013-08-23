@@ -18,6 +18,7 @@
   NSMenuItem *_nowPlayingMenuItem;
   NSMenuItem *_artistNameMenuItem;
   NSMenuItem *_trackNameMenuItem;
+  NSMenuItem *_playbackToggleMenuItem;
   NSMenu *_dockMenu;
   BOOL _isPlaying;
 }
@@ -44,6 +45,7 @@
   _dockMenu = [[AppDelegate appDelegate] dockMenu];
   _trackNameMenuItem = [[AppDelegate appDelegate] trackNameMenuItem];
   _artistNameMenuItem = [[AppDelegate appDelegate] artistNameMenuItem];
+  _playbackToggleMenuItem = [[AppDelegate appDelegate] playbackToggleMenuItem];
   
   [self shouldShowTrackInfoMenuItems:NO];
   
@@ -52,6 +54,11 @@
 }
 
 - (void)togglePlayback {
+  if ([[_playbackToggleMenuItem title] isEqualToString:@"Play"]) {
+    [_playbackToggleMenuItem setTitle:@"Pause"];
+  } else {
+    [_playbackToggleMenuItem setTitle:@"Play"];
+  }
   [self triggerJavascriptEvent:@"click" forElementID:@"PlayerPlayPause"];
 }
 
