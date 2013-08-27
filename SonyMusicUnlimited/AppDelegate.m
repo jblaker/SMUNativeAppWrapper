@@ -27,7 +27,9 @@
 
 - (void)bringMainWindowToFront:(id)sender {
 	[window makeKeyAndOrderFront:sender];
-	[webView setMainFrameURL:kURLToLoad];
+	if ([[webView mainFrameURL] isEqualTo:@""]) {
+		[webView setMainFrameURL:kURLToLoad];
+	}
 }
 
 + (AppDelegate *)appDelegate {
