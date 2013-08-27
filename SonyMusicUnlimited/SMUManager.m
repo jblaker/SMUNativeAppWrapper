@@ -11,7 +11,6 @@
 
 #define kApplicationName  @"Sony Music Unlimited"
 #define kNowPlayingClass  @"GBJWNX1BGBC"
-#define kURLToLoad        @"https://music.sonyentertainmentnetwork.com"
 
 @interface SMUManager () {
   WebView *_webView;
@@ -42,6 +41,8 @@
   [_nowPlayingMenuItem setTitle:@"Nothing Playing"];
   
   _webView = [[AppDelegate appDelegate] webView];
+  [_webView setFrameLoadDelegate:self];
+  
   _dockMenu = [[AppDelegate appDelegate] dockMenu];
   _trackNameMenuItem = [[AppDelegate appDelegate] trackNameMenuItem];
   _artistNameMenuItem = [[AppDelegate appDelegate] artistNameMenuItem];
@@ -49,8 +50,14 @@
   
   [self shouldShowTrackInfoMenuItems:NO];
   
-  [_webView setMainFrameURL:kURLToLoad];
   [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(displayNowPlaying) userInfo:nil repeats:YES];
+}
+
+// This delegate method gets triggered every time the page loads, but before the JavaScript runs
+- (void)webView:(WebView *)webView windowScriptObjectAvailable:(WebScriptObject *)windowScriptObject {
+	// Allow this class to be usable through the "window.app" object in JavaScript
+	// This could be any Objective-C class
+	[windowScriptObject setValue:self forKey:@"app"];
 }
 
 - (void)togglePlayback {
@@ -80,7 +87,7 @@
 
 - (void)triggerJavascriptEvent:(NSString *)eventName forElementID:(NSString *)elementID {
   NSString *javascriptCommand = [NSString stringWithFormat:@"var event = document.createEvent(\"HTMLEvents\"); event.initEvent(\"%@\", true, true); document.getElementById('%@').dispatchEvent(event)", eventName, elementID];
-  [_webView stringByEvaluatingJavaScriptFromString:javascriptCommand];
+  [[_webView windowScriptObject] evaluateWebScript:javascriptCommand];
 }
 
 - (void)shouldShowTrackInfoMenuItems:(BOOL)b {

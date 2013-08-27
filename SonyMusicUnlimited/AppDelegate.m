@@ -9,17 +9,27 @@
 #import "AppDelegate.h"
 #import "SMUManager.h"
 
-@interface AppDelegate () {
-  BOOL didInitialLoad;
-}
-
-@end
+#define kURLToLoad @"https://music.sonyentertainmentnetwork.com"
 
 @implementation AppDelegate
 
+@synthesize webView, window;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-  [self.window setBackgroundColor:[NSColor colorWithDeviceRed:0.917 green:0.921 blue:0.933 alpha:1.0]];
+  [webView setMainFrameURL:kURLToLoad];
   [[SMUManager sharedInstance] setup];
+}
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag {
+	[self bringMainWindowToFront:nil];
+	return YES;
+}
+
+- (void)bringMainWindowToFront:(id)sender {
+	[window makeKeyAndOrderFront:sender];
+	if ([[webView mainFrameURL] isEqualTo:@""]) {
+		[webView setMainFrameURL:kURLToLoad];
+	}
 }
 
 + (AppDelegate *)appDelegate {
@@ -28,23 +38,23 @@
 
 #pragma mark - UI Actions
 
-- (void)togglePlayback:(id)sender {
+- (IBAction)togglePlayback:(id)sender {
   [[SMUManager sharedInstance] togglePlayback];
 }
 
-- (void)nextTrack:(id)sender {
+- (IBAction)nextTrack:(id)sender {
   [[SMUManager sharedInstance] nextTrack];
 }
 
-- (void)previousTrack:(id)sender {
+- (IBAction)previousTrack:(id)sender {
   [[SMUManager sharedInstance] previousTrack];
 }
 
-- (void)likeTrack:(id)sender {
+- (IBAction)likeTrack:(id)sender {
   [[SMUManager sharedInstance] likeTrack];
 }
 
-- (void)dislikeTrack:(id)sender {
+- (IBAction)dislikeTrack:(id)sender {
   [[SMUManager sharedInstance] dislikeTrack];
 }
 
