@@ -164,8 +164,7 @@
 }
 
 - (NSString *)innerHTMLForElementWithClassName:(NSString *)className atIndex:(int)index {
-  return [[_webView windowScriptObject] evaluateWebScript:[NSString stringWithFormat:@"document.getElementsByClassName('%@')[%i].innerHTML", className, index]];
-  
+  return [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementsByClassName('%@')[%i].innerHTML", className, index]];;
 }
 
 @end
