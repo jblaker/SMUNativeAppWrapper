@@ -11,6 +11,9 @@
 
 #define kApplicationName  @"Sony Music Unlimited"
 #define kNowPlayingClass  @"GBJWNX1BGBC"
+#define kIndexForTitle    0
+#define kIndexForArtist   4
+#define kIndexForAlbum    2
 
 @interface SMUManager () {
   WebView *_webView;
@@ -18,8 +21,15 @@
   NSMenuItem *_artistNameMenuItem;
   NSMenuItem *_trackNameMenuItem;
   NSMenuItem *_playbackToggleMenuItem;
+  NSMenuItem *_previousTrackMenuItem;
+  NSMenuItem *_nextTrackMenuItem;
+  NSMenuItem *_likeTrackMenuItem;
+  NSMenuItem *_dislikeTrackMenuItem;
   NSMenu *_dockMenu;
   BOOL _isPlaying;
+  int _previousTimeStamp;
+  NSString *_trackName;
+  NSString *_artistName;
 }
 
 @end
@@ -46,11 +56,17 @@
   _dockMenu = [[AppDelegate appDelegate] dockMenu];
   _trackNameMenuItem = [[AppDelegate appDelegate] trackNameMenuItem];
   _artistNameMenuItem = [[AppDelegate appDelegate] artistNameMenuItem];
+  
   _playbackToggleMenuItem = [[AppDelegate appDelegate] playbackToggleMenuItem];
+  _previousTrackMenuItem = [[AppDelegate appDelegate] previousTrackMenuItem];
+  _nextTrackMenuItem = [[AppDelegate appDelegate] nextTrackMenuItem];
+  _likeTrackMenuItem = [[AppDelegate appDelegate] likeTrackMenuItem];
+  _dislikeTrackMenuItem = [[AppDelegate appDelegate] dislikeTrackMenuItem];
   
   [self shouldShowTrackInfoMenuItems:NO];
+  [self shouldEnableMenuItems:NO];
   
-  [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(displayNowPlaying) userInfo:nil repeats:YES];
+  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(displayNowPlaying) userInfo:nil repeats:YES];
 }
 
 // This delegate method gets triggered every time the page loads, but before the JavaScript runs
@@ -61,11 +77,6 @@
 }
 
 - (void)togglePlayback {
-  if ([[_playbackToggleMenuItem title] isEqualToString:@"Play"]) {
-    [_playbackToggleMenuItem setTitle:@"Pause"];
-  } else {
-    [_playbackToggleMenuItem setTitle:@"Play"];
-  }
   [self triggerJavascriptEvent:@"click" forElementID:@"PlayerPlayPause"];
 }
 
@@ -100,24 +111,55 @@
   }
 }
 
+- (void)shouldEnableMenuItems:(BOOL)b {
+  [_playbackToggleMenuItem setEnabled:b];
+  [_previousTrackMenuItem setEnabled:b];
+  [_nextTrackMenuItem setEnabled:b];
+  [_likeTrackMenuItem setEnabled:b];
+  [_dislikeTrackMenuItem setEnabled:b];
+}
+
 - (void)displayNowPlaying {
-  NSString *title = [self innerHTMLForElementWithClassName:kNowPlayingClass atIndex:0];
-  //NSString *album = [self innerHTMLForElementWithClassName:kNowPlayingClass atIndex:2];
-  NSString *artist = [self innerHTMLForElementWithClassName:kNowPlayingClass atIndex:4];
-  if ( title.length == 0 ) {
+  NSString *currentTrackName = [self innerHTMLForElementWithClassName:kNowPlayingClass atIndex:kIndexForTitle];
+  if ( ![currentTrackName isEqualToString:_trackName] ) {
+    _previousTimeStamp = 0;
+  }
+  _trackName = currentTrackName;
+  _artistName = [self innerHTMLForElementWithClassName:kNowPlayingClass atIndex:kIndexForArtist];
+  
+  if ( _trackName.length == 0 ) {
     [_nowPlayingMenuItem setTitle:@"Nothing Playing"];
     if ( _isPlaying == YES ) {
       [self shouldShowTrackInfoMenuItems:NO];
+      [self shouldEnableMenuItems:NO];
       _isPlaying = NO;
     }
   } else {
-    [_nowPlayingMenuItem setTitle:@"Now Playing"];
-    [_artistNameMenuItem setTitle:artist];
-    [_trackNameMenuItem setTitle:title];
+    [self updateMenuItem:_artistNameMenuItem withTitle:_artistName];
+    [self updateMenuItem:_trackNameMenuItem withTitle:_trackName];
+    [self updateMenuItem:_nowPlayingMenuItem withTitle:@"Now Playing"];
+    
     if ( _isPlaying == NO ) {
       [self shouldShowTrackInfoMenuItems:YES];
+      [self shouldEnableMenuItems:YES];
       _isPlaying = YES;
     }
+    
+    NSString *currentTimeString = [self innerHTMLForElementWithClassName:@"GBJWNX1BOY" atIndex:0];
+    int currentTimeStamp = [[currentTimeString stringByReplacingOccurrencesOfString:@":" withString:@""] intValue];
+    if ( currentTimeStamp > _previousTimeStamp ) {
+      [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Pause"];
+    } else {
+      [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Play"];
+    }
+    _previousTimeStamp = currentTimeStamp;
+    
+  }
+}
+
+- (void)updateMenuItem:(NSMenuItem *)menuItem withTitle:(NSString *)title {
+  if ( ![[menuItem title] isEqualToString:title] ) {
+    [menuItem setTitle:title];
   }
 }
 
