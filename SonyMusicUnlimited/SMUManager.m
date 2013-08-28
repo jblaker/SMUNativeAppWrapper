@@ -8,6 +8,7 @@
 
 #import "SMUManager.h"
 #import "AppDelegate.h"
+#import "iChat.h"
 
 #define kApplicationName  @"Sony Music Unlimited"
 #define kNowPlayingClass  @"GBJWNX1BGBC"
@@ -30,6 +31,7 @@
   int _previousTimeStamp;
   NSString *_trackName;
   NSString *_artistName;
+  iChatApplication *_messagesApp;
 }
 
 @end
@@ -46,6 +48,8 @@
 }
 
 - (void)setup {
+  
+  _messagesApp = (iChatApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iChat"];
   
   _nowPlayingMenuItem = [[AppDelegate appDelegate] nowPlayingMenuItem];
   [_nowPlayingMenuItem setTitle:@"Nothing Playing"];
@@ -133,11 +137,14 @@
       [self shouldShowTrackInfoMenuItems:NO];
       [self shouldEnableMenuItems:NO];
       _isPlaying = NO;
+      [self updateiChatStatusWithString:@"Available"];
     }
   } else {
     [self updateMenuItem:_artistNameMenuItem withTitle:_artistName];
     [self updateMenuItem:_trackNameMenuItem withTitle:_trackName];
     [self updateMenuItem:_nowPlayingMenuItem withTitle:@"Now Playing"];
+    NSString *statusMessage = [NSString stringWithFormat:@"♫ Playing: %@ - %@", _artistName, _trackName];
+    [self updateiChatStatusWithString:statusMessage];
     
     if ( _isPlaying == NO ) {
       [self shouldShowTrackInfoMenuItems:YES];
@@ -165,6 +172,12 @@
 
 - (NSString *)innerHTMLForElementWithClassName:(NSString *)className atIndex:(int)index {
   return [_webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementsByClassName('%@')[%i].innerHTML", className, index]];;
+}
+
+- (void)updateiChatStatusWithString:(NSString *)status {
+  if ( ![[_messagesApp statusMessage] isEqualToString:status] ) {
+    [_messagesApp setStatusMessage:status];
+  }
 }
 
 @end

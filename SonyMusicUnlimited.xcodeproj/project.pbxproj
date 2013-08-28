@@ -16,6 +16,7 @@
 		3F2275AF17C409D50051A177 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2275AE17C409D50051A177 /* AppDelegate.m */; };
 		3F2275B217C409D50051A177 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2275B017C409D50051A177 /* MainMenu.xib */; };
 		3F2275B917C40A830051A177 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F2275B817C40A830051A177 /* WebKit.framework */; };
+		3F8305BF17CE7A4000727D3A /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8305BE17CE7A4000727D3A /* ScriptingBridge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		3F2275AE17C409D50051A177 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3F2275B117C409D50051A177 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		3F2275B817C40A830051A177 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		3F8305BD17CE798800727D3A /* iChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iChat.h; sourceTree = "<group>"; };
+		3F8305BE17CE7A4000727D3A /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F8305BF17CE7A4000727D3A /* ScriptingBridge.framework in Frameworks */,
 				3F2275B917C40A830051A177 /* WebKit.framework in Frameworks */,
 				3F22759C17C409D50051A177 /* Cocoa.framework in Frameworks */,
 			);
@@ -71,6 +75,7 @@
 		3F22759A17C409D50051A177 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F8305BE17CE7A4000727D3A /* ScriptingBridge.framework */,
 				3F2275B817C40A830051A177 /* WebKit.framework */,
 				3F22759B17C409D50051A177 /* Cocoa.framework */,
 				3F22759D17C409D50051A177 /* Other Frameworks */,
@@ -91,6 +96,7 @@
 		3F2275A117C409D50051A177 /* SonyMusicUnlimited */ = {
 			isa = PBXGroup;
 			children = (
+				3F8305BD17CE798800727D3A /* iChat.h */,
 				3F1E4B6717C6926B0085A55B /* AppIcon.icns */,
 				3F2275AD17C409D50051A177 /* AppDelegate.h */,
 				3F2275AE17C409D50051A177 /* AppDelegate.m */,
