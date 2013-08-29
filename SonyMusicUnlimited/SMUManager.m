@@ -26,12 +26,14 @@
   NSMenuItem *_nextTrackMenuItem;
   NSMenuItem *_likeTrackMenuItem;
   NSMenuItem *_dislikeTrackMenuItem;
+  NSMenuItem *_updateStatusMessageMenuItem;
   NSMenu *_dockMenu;
   BOOL _isPlaying;
   int _previousTimeStamp;
   NSString *_trackName;
   NSString *_artistName;
   iChatApplication *_messagesApp;
+  BOOL _shouldUpdateStatus;
 }
 
 @end
@@ -48,6 +50,8 @@
 }
 
 - (void)setup {
+  
+  _shouldUpdateStatus = [[NSUserDefaults standardUserDefaults] boolForKey:kShouldUpdateStatusKey];
   
   _messagesApp = (iChatApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iChat"];
   
@@ -67,10 +71,12 @@
   _likeTrackMenuItem = [[AppDelegate appDelegate] likeTrackMenuItem];
   _dislikeTrackMenuItem = [[AppDelegate appDelegate] dislikeTrackMenuItem];
   
+  _updateStatusMessageMenuItem = [[AppDelegate appDelegate] updateStatusMessageMenuItem];
+  
   [self shouldShowTrackInfoMenuItems:NO];
   [self shouldEnableMenuItems:NO];
   
-  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(displayNowPlaying) userInfo:nil repeats:YES];
+  [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(displayNowPlaying) userInfo:nil repeats:YES];
 }
 
 // This delegate method gets triggered every time the page loads, but before the JavaScript runs
@@ -98,6 +104,17 @@
 
 - (void)dislikeTrack {
   [self triggerJavascriptEvent:@"click" forElementID:@"PlayerDislike"];
+}
+
+- (void)toggleShouldUpdateStatus {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  [defaults setBool:!_shouldUpdateStatus forKey:kShouldUpdateStatusKey];
+  [defaults synchronize];
+  _shouldUpdateStatus = !_shouldUpdateStatus;
+  [_updateStatusMessageMenuItem setState:_shouldUpdateStatus];
+  if ( !_shouldUpdateStatus ) {
+    [_messagesApp setStatusMessage:@"Available"];
+  }
 }
 
 - (void)triggerJavascriptEvent:(NSString *)eventName forElementID:(NSString *)elementID {
@@ -143,8 +160,6 @@
     [self updateMenuItem:_artistNameMenuItem withTitle:_artistName];
     [self updateMenuItem:_trackNameMenuItem withTitle:_trackName];
     [self updateMenuItem:_nowPlayingMenuItem withTitle:@"Now Playing"];
-    NSString *statusMessage = [NSString stringWithFormat:@"♫ Playing: %@ - %@", _artistName, _trackName];
-    [self updateiChatStatusWithString:statusMessage];
     
     if ( _isPlaying == NO ) {
       [self shouldShowTrackInfoMenuItems:YES];
@@ -156,8 +171,11 @@
     int currentTimeStamp = [[currentTimeString stringByReplacingOccurrencesOfString:@":" withString:@""] intValue];
     if ( currentTimeStamp > _previousTimeStamp ) {
       [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Pause"];
+      NSString *statusMessage = [NSString stringWithFormat:@"Listening to %@ - %@", _artistName, _trackName];
+      [self updateiChatStatusWithString:statusMessage];
     } else {
       [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Play"];
+      [self updateiChatStatusWithString:@"Available"];
     }
     _previousTimeStamp = currentTimeStamp;
     
@@ -175,7 +193,7 @@
 }
 
 - (void)updateiChatStatusWithString:(NSString *)status {
-  if ( ![[_messagesApp statusMessage] isEqualToString:status] ) {
+  if ( ![[_messagesApp statusMessage] isEqualToString:status] && _shouldUpdateStatus ) {
     [_messagesApp setStatusMessage:status];
   }
 }

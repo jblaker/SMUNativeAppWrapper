@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SMUManager.h"
+#import "iChat.h"
 
 #define kURLToLoad @"https://music.sonyentertainmentnetwork.com"
 
@@ -16,6 +17,9 @@
 @synthesize webView, window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  [defaults registerDefaults:[NSDictionary dictionaryWithObject:@YES forKey:kShouldUpdateStatusKey]];
+  [self.updateStatusMessageMenuItem setState:[defaults boolForKey:kShouldUpdateStatusKey]];
   [webView setMainFrameURL:kURLToLoad];
   [[SMUManager sharedInstance] setup];
 }
@@ -34,6 +38,11 @@
 
 + (AppDelegate *)appDelegate {
 	return (AppDelegate *)[[NSApplication sharedApplication] delegate];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification {
+  iChatApplication *iChat = (iChatApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iChat"];
+  [iChat setStatusMessage:@"Available"];
 }
 
 #pragma mark - UI Actions
@@ -56,6 +65,10 @@
 
 - (IBAction)dislikeTrack:(id)sender {
   [[SMUManager sharedInstance] dislikeTrack];
+}
+
+- (IBAction)toggleShouldUpdateStatus:(id)sender {
+  [[SMUManager sharedInstance] toggleShouldUpdateStatus];
 }
 
 @end

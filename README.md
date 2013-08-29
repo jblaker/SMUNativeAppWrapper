@@ -1,7 +1,8 @@
 SMUNativeAppWrapper
 ===================
 
-I'm not a fan of having to keep some browser tab open to listen to music so I build a simple OS X wrapper for the Sony Music Unlimited webapp. Keep it in your dock and get some fancible dock tasks including quickly seeing what is currently playing.
+A simple WebView wrapper for Sony Music Unlimited with dock controls and the option to update your iChat/Messages status message with what you're listening to.
 
+Please feel free to contribute and enhance this project. Hopefully some day we'll have an official native app.
 
-![image](http://dev.blakerdesign.com/misc/img/smuwrapper-docktasks.png?v=1)
+![image](http://dev.blakerdesign.com/misc/img/smuwrapper-docktasks.png?v=2)

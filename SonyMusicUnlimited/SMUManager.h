@@ -17,5 +17,6 @@
 - (void)nextTrack;
 - (void)likeTrack;
 - (void)dislikeTrack;
+- (void)toggleShouldUpdateStatus;
 
 @end
