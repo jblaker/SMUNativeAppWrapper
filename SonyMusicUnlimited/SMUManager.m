@@ -9,11 +9,12 @@
 #import "SMUManager.h"
 #import "AppDelegate.h"
 #import "iChat.h"
+#import "NSString+HTML.h"
 
 #define kApplicationName  @"Sony Music Unlimited"
-#define kNowPlayingClass  @"GBJWNX1BGBC"
-#define kIndexForTitle    0
-#define kIndexForArtist   4
+#define kNowPlayingClass  @"GBJWNX1BGCC"
+#define kIndexForTitle    4
+#define kIndexForArtist   0
 #define kIndexForAlbum    2
 
 @interface SMUManager () {
@@ -157,8 +158,8 @@
       [self updateiChatStatusWithString:@"Available"];
     }
   } else {
-    [self updateMenuItem:_artistNameMenuItem withTitle:_artistName];
-    [self updateMenuItem:_trackNameMenuItem withTitle:_trackName];
+    [self updateMenuItem:_artistNameMenuItem withTitle:[_artistName kv_decodeHTMLCharacterEntities]];
+    [self updateMenuItem:_trackNameMenuItem withTitle:[_trackName kv_decodeHTMLCharacterEntities]];
     [self updateMenuItem:_nowPlayingMenuItem withTitle:@"Now Playing"];
     
     if ( _isPlaying == NO ) {
@@ -167,7 +168,7 @@
       _isPlaying = YES;
     }
     
-    NSString *currentTimeString = [self innerHTMLForElementWithClassName:@"GBJWNX1BOY" atIndex:0];
+    NSString *currentTimeString = [self innerHTMLForElementWithClassName:@"GBJWNX1BPY" atIndex:0];
     int currentTimeStamp = [[currentTimeString stringByReplacingOccurrencesOfString:@":" withString:@""] intValue];
     if ( currentTimeStamp > _previousTimeStamp ) {
       [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Pause"];
@@ -193,8 +194,8 @@
 }
 
 - (void)updateiChatStatusWithString:(NSString *)status {
-  if ( ![[_messagesApp statusMessage] isEqualToString:status] && _shouldUpdateStatus ) {
-    [_messagesApp setStatusMessage:status];
+  if ( [_messagesApp isRunning] && ![[_messagesApp statusMessage] isEqualToString:status] && _shouldUpdateStatus ) {
+    [_messagesApp setStatusMessage:[status kv_decodeHTMLCharacterEntities]];
   }
 }
 
