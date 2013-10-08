@@ -127,7 +127,7 @@
 - (void)shouldShowTrackInfoMenuItems:(BOOL)b {
   if (b) {
     [_dockMenu insertItem:_trackNameMenuItem atIndex:1];
-    [_dockMenu insertItem:_artistNameMenuItem atIndex:1];
+    [_dockMenu insertItem:_artistNameMenuItem atIndex:2];
   } else {
     [_dockMenu removeItem:_trackNameMenuItem];
     [_dockMenu removeItem:_artistNameMenuItem];
@@ -159,13 +159,8 @@
       [self updateiChatStatusWithString:@"Available"];
     }
   } else {
-    if([self updateMenuItem:_trackNameMenuItem withTitle:[_trackName kv_decodeHTMLCharacterEntities]]) {
-      NSUserNotification *notification = [[NSUserNotification alloc] init];
-      notification.title = _artistName;
-      notification.informativeText = _trackName;
-      //notification.soundName = NSUserNotificationDefaultSoundName;
-      [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
-      [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    if([self updateMenuItem:_trackNameMenuItem withTitle:[_trackName kv_decodeHTMLCharacterEntities]]){
+      [self postNotification];
     }
     [self updateMenuItem:_artistNameMenuItem withTitle:[_artistName kv_decodeHTMLCharacterEntities]];
     [self updateMenuItem:_nowPlayingMenuItem withTitle:@"Now Playing"];
@@ -180,7 +175,7 @@
     int currentTimeStamp = [[currentTimeString stringByReplacingOccurrencesOfString:@":" withString:@""] intValue];
     if ( currentTimeStamp > _previousTimeStamp ) {
       [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Pause"];
-      NSString *statusMessage = [NSString stringWithFormat:@"Listening to %@ - %@", _trackName, _artistName];
+      NSString *statusMessage = [NSString stringWithFormat:@"Listening to %@ - %@", _artistName, _trackName];
       [self updateiChatStatusWithString:statusMessage];
     } else {
       [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Play"];
@@ -189,6 +184,15 @@
     _previousTimeStamp = currentTimeStamp;
     
   }
+}
+
+- (void)postNotification {
+  NSUserNotification *notification = [[NSUserNotification alloc] init];
+  notification.title = _artistName;
+  notification.informativeText = _trackName;
+  //notification.soundName = NSUserNotificationDefaultSoundName;
+  [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
+  [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 - (BOOL)updateMenuItem:(NSMenuItem *)menuItem withTitle:(NSString *)title {
