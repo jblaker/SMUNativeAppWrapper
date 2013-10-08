@@ -13,8 +13,8 @@
 
 #define kApplicationName  @"Sony Music Unlimited"
 #define kNowPlayingClass  @"GBJWNX1BGCC"
-#define kIndexForTitle    4
-#define kIndexForArtist   0
+#define kIndexForTitle    0
+#define kIndexForArtist   4
 #define kIndexForAlbum    2
 
 @interface SMUManager () {
@@ -105,6 +105,7 @@
 
 - (void)dislikeTrack {
   [self triggerJavascriptEvent:@"click" forElementID:@"PlayerDislike"];
+  [self nextTrack];
 }
 
 - (void)toggleShouldUpdateStatus {
@@ -158,8 +159,15 @@
       [self updateiChatStatusWithString:@"Available"];
     }
   } else {
+    if([self updateMenuItem:_trackNameMenuItem withTitle:[_trackName kv_decodeHTMLCharacterEntities]]) {
+      NSUserNotification *notification = [[NSUserNotification alloc] init];
+      notification.title = _artistName;
+      notification.informativeText = _trackName;
+      //notification.soundName = NSUserNotificationDefaultSoundName;
+      [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
+      [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
     [self updateMenuItem:_artistNameMenuItem withTitle:[_artistName kv_decodeHTMLCharacterEntities]];
-    [self updateMenuItem:_trackNameMenuItem withTitle:[_trackName kv_decodeHTMLCharacterEntities]];
     [self updateMenuItem:_nowPlayingMenuItem withTitle:@"Now Playing"];
     
     if ( _isPlaying == NO ) {
@@ -172,7 +180,7 @@
     int currentTimeStamp = [[currentTimeString stringByReplacingOccurrencesOfString:@":" withString:@""] intValue];
     if ( currentTimeStamp > _previousTimeStamp ) {
       [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Pause"];
-      NSString *statusMessage = [NSString stringWithFormat:@"Listening to %@ - %@", _artistName, _trackName];
+      NSString *statusMessage = [NSString stringWithFormat:@"Listening to %@ - %@", _trackName, _artistName];
       [self updateiChatStatusWithString:statusMessage];
     } else {
       [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Play"];
@@ -183,10 +191,12 @@
   }
 }
 
-- (void)updateMenuItem:(NSMenuItem *)menuItem withTitle:(NSString *)title {
+- (BOOL)updateMenuItem:(NSMenuItem *)menuItem withTitle:(NSString *)title {
   if ( ![[menuItem title] isEqualToString:title] ) {
     [menuItem setTitle:title];
+    return YES;
   }
+  return NO;
 }
 
 - (NSString *)innerHTMLForElementWithClassName:(NSString *)className atIndex:(int)index {
