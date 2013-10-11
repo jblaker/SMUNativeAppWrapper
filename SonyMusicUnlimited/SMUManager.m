@@ -41,6 +41,8 @@
 
 @implementation SMUManager
 
+@synthesize playbackToggleStatusItem=_playbackToggleStatusItem, skipTrackStatusItem=_skipTrackStatusItem;
+
 + (SMUManager *)sharedInstance {
   static SMUManager *sharedInstance = nil;
   if (sharedInstance) {
@@ -78,6 +80,20 @@
   [self shouldEnableMenuItems:NO];
   
   [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(displayNowPlaying) userInfo:nil repeats:YES];
+  
+  [self buildStatusBarItems];
+}
+
+- (void)buildStatusBarItems {
+  NSStatusBar *bar = [NSStatusBar systemStatusBar];
+  
+  _skipTrackStatusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
+  [_skipTrackStatusItem setImage:[NSImage imageNamed:@"Icon_Skip"]];
+  [_skipTrackStatusItem setAction:@selector(nextTrack)];
+  
+  _playbackToggleStatusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
+  [_playbackToggleStatusItem setImage:[NSImage imageNamed:@"Icon_Play"]];
+  [_playbackToggleMenuItem setAction:@selector(togglePlayback)];
 }
 
 // This delegate method gets triggered every time the page loads, but before the JavaScript runs
@@ -157,6 +173,7 @@
       [self shouldEnableMenuItems:NO];
       _isPlaying = NO;
       [self updateiChatStatusWithString:@"Available"];
+      [_playbackToggleStatusItem setImage:[NSImage imageNamed:@"Icon_Play"]];
     }
   } else {
     if([self updateMenuItem:_trackNameMenuItem withTitle:[_trackName kv_decodeHTMLCharacterEntities]]){
@@ -168,6 +185,7 @@
     if ( _isPlaying == NO ) {
       [self shouldShowTrackInfoMenuItems:YES];
       [self shouldEnableMenuItems:YES];
+      [_playbackToggleStatusItem setImage:[NSImage imageNamed:@"Icon_Pause"]];
       _isPlaying = YES;
     }
     

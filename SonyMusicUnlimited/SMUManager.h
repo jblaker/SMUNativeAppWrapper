@@ -7,8 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
 @interface SMUManager : NSObject
+
+@property (strong) NSStatusItem *playbackToggleStatusItem;
+@property (strong) NSStatusItem *skipTrackStatusItem;
 
 + (SMUManager *)sharedInstance;
 - (void)setup;

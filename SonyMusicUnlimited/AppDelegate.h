@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 
+
 #define kShouldUpdateStatusKey @"shouldUpdateStatus"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
