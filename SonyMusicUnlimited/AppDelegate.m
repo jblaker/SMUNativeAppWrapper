@@ -42,10 +42,20 @@
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
   iChatApplication *iChat = (iChatApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iChat"];
-  [iChat setStatusMessage:@"Available"];
+  if( [iChat isRunning] ) {
+    [iChat setStatusMessage:@"Available"];
+  }
 }
 
 #pragma mark - UI Actions
+
+- (void)togglePlaybackFromStatusBar:(id)sender {
+  [[SMUManager sharedInstance] togglePlayback];
+}
+
+- (void)nextTrackFromStatusBar:(id)sender {
+  [[SMUManager sharedInstance] nextTrack];
+}
 
 - (IBAction)togglePlayback:(id)sender {
   [[SMUManager sharedInstance] togglePlayback];

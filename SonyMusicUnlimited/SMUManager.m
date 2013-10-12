@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "iChat.h"
 #import "NSString+HTML.h"
+#import <AppKit/AppKit.h>
 
 #define kApplicationName  @"Sony Music Unlimited"
 #define kNowPlayingClass  @"GBJWNX1BGCC"
@@ -28,6 +29,8 @@
   NSMenuItem *_likeTrackMenuItem;
   NSMenuItem *_dislikeTrackMenuItem;
   NSMenuItem *_updateStatusMessageMenuItem;
+  NSStatusItem *_playbackToggleStatusItem;
+  NSStatusItem *_nextTrackStatusItem;
   NSMenu *_dockMenu;
   BOOL _isPlaying;
   int _previousTimeStamp;
@@ -40,8 +43,6 @@
 @end
 
 @implementation SMUManager
-
-@synthesize playbackToggleStatusItem=_playbackToggleStatusItem, skipTrackStatusItem=_skipTrackStatusItem;
 
 + (SMUManager *)sharedInstance {
   static SMUManager *sharedInstance = nil;
@@ -76,24 +77,27 @@
   
   _updateStatusMessageMenuItem = [[AppDelegate appDelegate] updateStatusMessageMenuItem];
   
+  [self buildStatusBarItems];
+  
   [self shouldShowTrackInfoMenuItems:NO];
   [self shouldEnableMenuItems:NO];
   
   [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(displayNowPlaying) userInfo:nil repeats:YES];
   
-  [self buildStatusBarItems];
 }
 
 - (void)buildStatusBarItems {
   NSStatusBar *bar = [NSStatusBar systemStatusBar];
   
-  _skipTrackStatusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
-  [_skipTrackStatusItem setImage:[NSImage imageNamed:@"Icon_Skip"]];
-  [_skipTrackStatusItem setAction:@selector(nextTrack)];
+  _nextTrackStatusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
+  [_nextTrackStatusItem setImage:[NSImage imageNamed:@"Icon_Skip"]];
+  [_nextTrackStatusItem setHighlightMode:YES];
+  [_nextTrackStatusItem setAction:@selector(nextTrackFromStatusBar:)];
   
   _playbackToggleStatusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
   [_playbackToggleStatusItem setImage:[NSImage imageNamed:@"Icon_Play"]];
-  [_playbackToggleMenuItem setAction:@selector(togglePlayback)];
+  [_playbackToggleStatusItem setHighlightMode:YES];
+  [_playbackToggleStatusItem setAction:@selector(togglePlaybackFromStatusBar:)];
 }
 
 // This delegate method gets triggered every time the page loads, but before the JavaScript runs
@@ -156,6 +160,8 @@
   [_nextTrackMenuItem setEnabled:b];
   [_likeTrackMenuItem setEnabled:b];
   [_dislikeTrackMenuItem setEnabled:b];
+  [_playbackToggleStatusItem setEnabled:b];
+  [_nextTrackStatusItem setEnabled:b];
 }
 
 - (void)displayNowPlaying {
@@ -173,7 +179,6 @@
       [self shouldEnableMenuItems:NO];
       _isPlaying = NO;
       [self updateiChatStatusWithString:@"Available"];
-      [_playbackToggleStatusItem setImage:[NSImage imageNamed:@"Icon_Play"]];
     }
   } else {
     if([self updateMenuItem:_trackNameMenuItem withTitle:[_trackName kv_decodeHTMLCharacterEntities]]){
@@ -182,10 +187,9 @@
     [self updateMenuItem:_artistNameMenuItem withTitle:[_artistName kv_decodeHTMLCharacterEntities]];
     [self updateMenuItem:_nowPlayingMenuItem withTitle:@"Now Playing"];
     
-    if ( _isPlaying == NO ) {
+    if ( _isPlaying == NO && _previousTimeStamp != 0 ) {
       [self shouldShowTrackInfoMenuItems:YES];
       [self shouldEnableMenuItems:YES];
-      [_playbackToggleStatusItem setImage:[NSImage imageNamed:@"Icon_Pause"]];
       _isPlaying = YES;
     }
     
@@ -195,13 +199,16 @@
       [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Pause"];
       NSString *statusMessage = [NSString stringWithFormat:@"Listening to %@ - %@", _artistName, _trackName];
       [self updateiChatStatusWithString:statusMessage];
+      [_playbackToggleStatusItem setImage:[NSImage imageNamed:@"Icon_Pause"]];
     } else {
       [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Play"];
       [self updateiChatStatusWithString:@"Available"];
+      [_playbackToggleStatusItem setImage:[NSImage imageNamed:@"Icon_Play"]];
     }
     _previousTimeStamp = currentTimeStamp;
     
   }
+
 }
 
 - (void)postNotification {

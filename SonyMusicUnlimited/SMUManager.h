@@ -11,9 +11,6 @@
 
 @interface SMUManager : NSObject
 
-@property (strong) NSStatusItem *playbackToggleStatusItem;
-@property (strong) NSStatusItem *skipTrackStatusItem;
-
 + (SMUManager *)sharedInstance;
 - (void)setup;
 - (void)togglePlayback;
@@ -22,5 +19,8 @@
 - (void)likeTrack;
 - (void)dislikeTrack;
 - (void)toggleShouldUpdateStatus;
+
+@property (strong) NSStatusItem *playbackToggleStatusItem;
+@property (strong) NSStatusItem *nextTrackStatusItem;
 
 @end
