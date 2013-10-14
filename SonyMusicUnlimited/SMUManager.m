@@ -36,6 +36,7 @@
   int _previousTimeStamp;
   NSString *_trackName;
   NSString *_artistName;
+  NSString *_albumName;
   iChatApplication *_messagesApp;
   BOOL _shouldUpdateStatus;
 }
@@ -171,6 +172,7 @@
   }
   _trackName = currentTrackName;
   _artistName = [self innerHTMLForElementWithClassName:kNowPlayingClass atIndex:kIndexForArtist];
+  _albumName = [self innerHTMLForElementWithClassName:kNowPlayingClass atIndex:kIndexForAlbum];
   
   if ( _trackName.length == 0 ) {
     [_nowPlayingMenuItem setTitle:@"Nothing Playing"];
@@ -197,7 +199,7 @@
     int currentTimeStamp = [[currentTimeString stringByReplacingOccurrencesOfString:@":" withString:@""] intValue];
     if ( currentTimeStamp > _previousTimeStamp ) {
       [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Pause"];
-      NSString *statusMessage = [NSString stringWithFormat:@"Listening to %@ - %@", _artistName, _trackName];
+      NSString *statusMessage = [NSString stringWithFormat:@"%@ — %@", _trackName, _artistName];
       [self updateiChatStatusWithString:statusMessage];
       [_playbackToggleStatusItem setImage:[NSImage imageNamed:@"Icon_Pause"]];
     } else {
@@ -213,8 +215,8 @@
 
 - (void)postNotification {
   NSUserNotification *notification = [[NSUserNotification alloc] init];
-  notification.title = _artistName;
-  notification.informativeText = _trackName;
+  notification.title = _trackName;
+  notification.informativeText = [NSString stringWithFormat:@"%@ — %@", _artistName, _albumName];
   //notification.soundName = NSUserNotificationDefaultSoundName;
   [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
   [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];

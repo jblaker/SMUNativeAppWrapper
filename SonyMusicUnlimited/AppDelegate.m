@@ -45,6 +45,7 @@
   if( [iChat isRunning] ) {
     [iChat setStatusMessage:@"Available"];
   }
+  [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
 }
 
 #pragma mark - UI Actions
