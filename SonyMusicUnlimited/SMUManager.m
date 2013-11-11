@@ -13,7 +13,8 @@
 #import <AppKit/AppKit.h>
 
 #define kApplicationName  @"Sony Music Unlimited"
-#define kNowPlayingClass  @"GBJWNX1BGCC"
+#define kNowPlayingClass  @"GEKKVSQBKBC"
+#define kTrackTimeClass   @"GEKKVSQBDY"
 #define kIndexForTitle    0
 #define kIndexForArtist   4
 #define kIndexForAlbum    2
@@ -195,7 +196,7 @@
       _isPlaying = YES;
     }
     
-    NSString *currentTimeString = [self innerHTMLForElementWithClassName:@"GBJWNX1BPY" atIndex:0];
+    NSString *currentTimeString = [self innerHTMLForElementWithClassName:kTrackTimeClass atIndex:0];
     int currentTimeStamp = [[currentTimeString stringByReplacingOccurrencesOfString:@":" withString:@""] intValue];
     if ( currentTimeStamp > _previousTimeStamp ) {
       [self updateMenuItem:_playbackToggleMenuItem withTitle:@"Pause"];
