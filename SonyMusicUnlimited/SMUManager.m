@@ -13,8 +13,8 @@
 #import <AppKit/AppKit.h>
 
 #define kApplicationName  @"Sony Music Unlimited"
-#define kNowPlayingClass  @"GEKKVSQBKBC"
-#define kTrackTimeClass   @"GEKKVSQBDY"
+#define kNowPlayingClass  @"GEKKVSQBHRB"
+#define kTrackTimeClass   @"GEKKVSQBPY"
 #define kIndexForTitle    0
 #define kIndexForArtist   4
 #define kIndexForAlbum    2
